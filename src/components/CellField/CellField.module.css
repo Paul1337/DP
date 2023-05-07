@@ -1,0 +1,7 @@
+.field {
+    padding: 10px;
+    overflow: auto;
+    display: grid;
+    justify-content: flex-start;
+    background-color: #fffbf6;
+}

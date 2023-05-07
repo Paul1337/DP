@@ -10,7 +10,7 @@ const ViewType = {
     Data: 'Данные',
 };
 
-const Field = () => {
+const MainView = () => {
     const [viewType, setViewType] = useState(ViewType.Cells);
 
     const views = [
@@ -46,4 +46,4 @@ const Field = () => {
     );
 };
 
-export default Field;
+export default MainView;

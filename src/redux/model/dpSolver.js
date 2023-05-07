@@ -1,8 +1,9 @@
 import { DimentionType } from './dimention.js';
 
 export default {
-    solve(field, controls, code) {
+    solve(field, controls, extraData, code) {
         let m, n;
+        const data = extraData.data;
         if (controls.dimention == DimentionType.one.value) {
             m = null;
             n = field.length;

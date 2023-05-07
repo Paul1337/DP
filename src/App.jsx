@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Controls from './components/Controls/Controls.jsx';
-import Field from './components/Field/Field.jsx';
+import MainView from './components/MainView/MainView.jsx';
 import CodeArea from './components/CodeArea/CodeArea.jsx';
 import { useDispatch } from 'react-redux';
 import { loadSavedAlgosThunkAction } from './redux/thunks/codeHandling.js';
@@ -13,7 +13,7 @@ function App() {
         <>
             <div className='appCont'>
                 <Controls />
-                <Field />
+                <MainView />
                 <CodeArea />
             </div>
         </>

@@ -2,6 +2,7 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 import { DimentionType } from '../model/dimention.js';
 import dpSolver from '../model/dpSolver.js';
 import { debounce } from '../utils/debounce.js';
+import { updateTable } from '../model/table.js';
 
 const initialState = {
     controls: {
@@ -11,9 +12,15 @@ const initialState = {
     },
     code: '',
     field: [],
-    data: [],
+    extraData: {
+        dimention: DimentionType.two.value,
+        data: [],
+        size: [3, 3],
+    },
     savedAlgos: [],
 };
+
+updateTable(initialState.extraData.data, initialState.extraData.size);
 
 export const updateDimentionAction = createAction('controls/updateDimention');
 export const updateFieldSizeAction = createAction('controls/updateFieldSize');
@@ -22,6 +29,8 @@ export const updateCodeAction = createAction('code/update');
 export const parseCodeAction = createAction('code/parse');
 export const updateNameAction = createAction('name/update');
 export const addSavedAlgoAction = createAction('algo/save');
+export const updateExtraDataItemAction = createAction('extraData/updateItem');
+export const updateExtraDataSizeAction = createAction('extraData/updateSize');
 
 const rootReducer = createReducer(initialState, (builder) => {
     builder
@@ -58,26 +67,10 @@ const rootReducer = createReducer(initialState, (builder) => {
                     state.field.splice(size[0]);
                 }
             } else if (state.controls.dimention == DimentionType.two.value) {
-                if (size[0] > state.field.length) {
-                    for (let i = state.field.length; i < size[0]; i++) {
-                        state.field.push(new Array(size[1]).fill(0));
-                    }
-                } else {
-                    state.field.splice(size[0]);
-                }
-
-                for (let i = 0; i < state.field.length; i++) {
-                    if (size[1] > state.field[i].length) {
-                        for (let j = state.field[i].length; j < size[1]; j++) {
-                            state.field[i].push(0);
-                        }
-                    } else {
-                        state.field[i].splice(size[1]);
-                    }
-                }
+                updateTable(state.field, size);
             }
 
-            dpSolver.solve(state.field, state.controls, state.code);
+            dpSolver.solve(state.field, state.controls, state.extraData, state.code);
         })
         .addCase(updateFieldItemAction, (state, action) => {
             const item = action.payload;
@@ -88,7 +81,7 @@ const rootReducer = createReducer(initialState, (builder) => {
             }
         })
         .addCase(parseCodeAction, (state, action) => {
-            dpSolver.solve(state.field, state.controls, state.code);
+            dpSolver.solve(state.field, state.controls, state.extraData, state.code);
         })
         .addCase(updateNameAction, (state, action) => {
             state.controls.name = action.payload;
@@ -97,6 +90,16 @@ const rootReducer = createReducer(initialState, (builder) => {
             if (!state.savedAlgos.includes(action.payload)) {
                 state.savedAlgos.push(action.payload);
             }
+        })
+        .addCase(updateExtraDataItemAction, (state, action) => {
+            const i = action.payload.i;
+            const j = action.payload.j;
+            const value = action.payload.value;
+            state.extraData.data[i][j] = action.payload.value;
+        })
+        .addCase(updateExtraDataSizeAction, (state, action) => {
+            state.extraData.size[action.payload.dimention] = action.payload.value;
+            updateTable(state.extraData.data, state.extraData.size);
         });
 });
 

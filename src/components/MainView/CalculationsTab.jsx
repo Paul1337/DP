@@ -1,7 +1,7 @@
 import { Input, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import styles from './Field.module.css';
+import styles from './MainView.module.css';
 
 const CalculationsTab = () => {
     const controls = useSelector((state) => state.controls);
@@ -20,12 +20,14 @@ const CalculationsTab = () => {
 
     const getResult = () => {
         if (args.length == 1) return field[args[0]];
-        if (args.length == 2) return field[args[1]];
+        if (args.length == 2) return field[args[0]]?.[args[1]];
     };
 
     return (
         <div className={styles.calculationsCont}>
-            <p className={styles.calculationsText}>{controls.name || 'function'}(</p>
+            <p className={styles.calculationsText.concat(' ', styles.functionText)}>
+                {controls.name || 'function'}(
+            </p>
             {args.map((arg, ind) => (
                 <TextField
                     key={ind}
