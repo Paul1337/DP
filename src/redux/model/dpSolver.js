@@ -2,6 +2,9 @@ import { DimentionType } from './dimention.js';
 
 export default {
     solve(field, controls, extraData, code) {
+        const max = Math.max;
+        const min = Math.min;
+
         let m, n;
         const data = extraData.data;
         if (controls.dimention == DimentionType.one.value) {

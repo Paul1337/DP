@@ -14,8 +14,12 @@ const initialState = {
     field: [],
     extraData: {
         dimention: DimentionType.two.value,
-        data: [],
-        size: [3, 3],
+        // data: [],
+        data: [
+            [31, 30, 28, 28, 27, 26, 26, 25, 24, 24, 23],
+            [8, 9, 9, 10, 10, 10, 11, 12, 14, 16, 18],
+        ],
+        size: [2, 11],
     },
     savedAlgos: [],
 };

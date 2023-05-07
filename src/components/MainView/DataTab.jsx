@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
     updateExtraDataItemAction,
     updateExtraDataSizeAction,
+    parseCodeAction,
 } from '../../redux/reducers/rootReducer.js';
 import constrains from '../../redux/model/constrains.js';
 import CellsField from '../CellField/CellField.jsx';
@@ -42,14 +43,15 @@ const DataTab = () => {
             <CellsField
                 field={extraData.data}
                 dimention={extraData.dimention}
-                onItemChange={(pos, e) =>
+                onItemChange={(pos, e) => {
                     dispatch(
                         updateExtraDataItemAction({
                             ...pos,
                             value: Number(e.target.value),
                         })
-                    )
-                }
+                    );
+                    dispatch(parseCodeAction());
+                }}
             />
         </div>
     );
