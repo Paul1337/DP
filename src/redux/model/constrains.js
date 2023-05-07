@@ -1,0 +1,4 @@
+export default {
+    MAX_DIMENTION: 1000000000,
+    MAX_RENDERED_DIMENTION: 100,
+};

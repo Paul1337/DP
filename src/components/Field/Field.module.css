@@ -1,0 +1,24 @@
+.field {
+    padding: 10px;
+    overflow: auto;
+    display: grid;
+    justify-content: flex-start;
+    background-color: #fffbf6;
+}
+
+.calculationsCont {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.calculationsText {
+    font-size: 20px;
+    display: inline-block;
+    /* margin-right: 12px; */
+}
+
+.calculationsResult {
+    color: darkgreen;
+    margin-right: 6px;
+}

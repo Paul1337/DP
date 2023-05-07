@@ -1,0 +1,27 @@
+.cont {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f0fbff;
+    /* #f0fbff */
+    /* background-color: lightgray; */
+}
+
+.nameBlock {
+    display: flex;
+    align-items: center;
+}
+
+.nameBlock > div {
+    margin: 5px;
+}
+
+.controlsBlock {
+    display: flex;
+    align-items: center;
+}
+
+.controlsBlock > div {
+    margin: 5px;
+}
