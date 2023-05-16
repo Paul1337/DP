@@ -3,11 +3,13 @@ import { Box, Tab, Tabs } from '@mui/material';
 import CellsTab from './CellsTab.jsx';
 import CalculationsTab from './CalculationsTab.jsx';
 import DataTab from './DataTab.jsx';
+import RepresentationTab from './RepresentationTab.jsx';
 
 const ViewType = {
     Cells: 'Поле ячеек',
     Calculations: 'Вычисление',
     Data: 'Данные',
+    Representation: 'Репрезентация данных',
 };
 
 const MainView = () => {
@@ -25,6 +27,10 @@ const MainView = () => {
         {
             type: ViewType.Data,
             element: <DataTab />,
+        },
+        {
+            type: ViewType.Representation,
+            element: <RepresentationTab />,
         },
     ];
 
