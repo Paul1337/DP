@@ -1,8 +1,6 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { DimentionType } from '../../redux/model/dimention.js';
 import Cell from '../Cell/Cell.jsx';
-import { updateFieldItemAction } from '../../redux/reducers/rootReducer.js';
 import constrains from '../../redux/model/constrains.js';
 import styles from './CellField.module.css';
 
@@ -18,7 +16,7 @@ const CellsField = ({ dimention, field, onItemChange }) => {
                               key={colInd}
                               position={{ i: Math.floor(colInd / 10), j: colInd % 10 }}
                               value={el.toString()}
-                              onChange={(e) => onItemChange({ i: colInd }, e)}
+                              onChange={(e) => onItemChange && onItemChange({ i: colInd }, e)}
                           />
                       )
                   )
@@ -33,7 +31,9 @@ const CellsField = ({ dimention, field, onItemChange }) => {
                                         key={rowInd * row.length + colInd}
                                         position={{ i: rowInd, j: colInd }}
                                         value={el.toString()}
-                                        onChange={(e) => onItemChange({ i: rowInd, j: colInd }, e)}
+                                        onChange={(e) =>
+                                            onItemChange && onItemChange({ i: rowInd, j: colInd }, e)
+                                        }
                                     />
                                 )
                             )

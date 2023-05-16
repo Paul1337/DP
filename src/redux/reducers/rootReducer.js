@@ -12,6 +12,11 @@ const initialState = {
     },
     code: '',
     field: [],
+    presentation: {
+        dimention: DimentionType.two.value,
+        data: new Array(20).fill(new Array(10).fill(0)),
+        // size: [0, 0],
+    },
     extraData: {
         dimention: DimentionType.two.value,
         // data: [],
@@ -74,7 +79,7 @@ const rootReducer = createReducer(initialState, (builder) => {
                 updateTable(state.field, size);
             }
 
-            dpSolver.solve(state.field, state.controls, state.extraData, state.code);
+            dpSolver.solve(state.field, state.controls, state.extraData, state.presentation, state.code);
         })
         .addCase(updateFieldItemAction, (state, action) => {
             const item = action.payload;
@@ -85,7 +90,7 @@ const rootReducer = createReducer(initialState, (builder) => {
             }
         })
         .addCase(parseCodeAction, (state, action) => {
-            dpSolver.solve(state.field, state.controls, state.extraData, state.code);
+            dpSolver.solve(state.field, state.controls, state.extraData, state.presentation, state.code);
         })
         .addCase(updateNameAction, (state, action) => {
             state.controls.name = action.payload;
