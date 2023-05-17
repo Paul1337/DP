@@ -6,15 +6,6 @@ export default {
         const min = Math.min;
 
         const pr = presentation.data;
-        // const pr = new Proxy(presentation.data, {
-        //     get(target, key) {
-        //         if (typeof key != 'number') throw new Error('Key should be a number');
-        //         if (!target[key]) {
-        //             target[key] = [];
-        //         }
-        //         return target[key];
-        //     },
-        // });
 
         let m, n;
         const data = extraData.data;
